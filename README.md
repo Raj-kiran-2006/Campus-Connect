@@ -1,4 +1,4 @@
-# Campus Connect
+# Campus-Connect
 
 Campus Connect is a student collaboration platform built with **Java 17,
 Jakarta Servlets, JSP, Maven, Bootstrap, and MySQL**. The runtime is a
