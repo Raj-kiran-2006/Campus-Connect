@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" version="6.0">
+    <display-name>Campus Connect</display-name>
+    <filter>
+        <filter-name>campusAuth</filter-name>
+        <filter-class>com.campusconnect.web.CampusFilter</filter-class>
+    </filter>
+    <filter-mapping><filter-name>campusAuth</filter-name><url-pattern>/*</url-pattern></filter-mapping>
+    <servlet>
+        <servlet-name>auth</servlet-name>
+        <servlet-class>com.campusconnect.web.AuthServlet</servlet-class>
+    </servlet>
+    <servlet-mapping><servlet-name>auth</servlet-name><url-pattern>/auth</url-pattern></servlet-mapping>
+    <servlet>
+        <servlet-name>dashboard</servlet-name>
+        <servlet-class>com.campusconnect.web.DashboardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping><servlet-name>dashboard</servlet-name><url-pattern>/dashboard</url-pattern></servlet-mapping>
+    <servlet>
+        <servlet-name>profile</servlet-name>
+        <servlet-class>com.campusconnect.web.ProfileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping><servlet-name>profile</servlet-name><url-pattern>/profile</url-pattern></servlet-mapping>
+    <servlet>
+        <servlet-name>profiles</servlet-name>
+        <servlet-class>com.campusconnect.web.ProfilesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping><servlet-name>profiles</servlet-name><url-pattern>/profiles</url-pattern></servlet-mapping>
+    <servlet-mapping><servlet-name>profiles</servlet-name><url-pattern>/messages</url-pattern></servlet-mapping>
+    <servlet>
+        <servlet-name>workspace</servlet-name>
+        <servlet-class>com.campusconnect.web.WorkspaceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping><servlet-name>workspace</servlet-name><url-pattern>/notes/*</url-pattern></servlet-mapping>
+    <servlet-mapping><servlet-name>workspace</servlet-name><url-pattern>/questions/*</url-pattern></servlet-mapping>
+    <servlet-mapping><servlet-name>workspace</servlet-name><url-pattern>/assignments/*</url-pattern></servlet-mapping>
+    <servlet-mapping><servlet-name>workspace</servlet-name><url-pattern>/marketplace/*</url-pattern></servlet-mapping>
+    <servlet-mapping><servlet-name>workspace</servlet-name><url-pattern>/projects/*</url-pattern></servlet-mapping>
+    <servlet-mapping><servlet-name>workspace</servlet-name><url-pattern>/notifications/*</url-pattern></servlet-mapping>
+    <servlet-mapping><servlet-name>workspace</servlet-name><url-pattern>/activity/*</url-pattern></servlet-mapping>
+    <servlet-mapping><servlet-name>workspace</servlet-name><url-pattern>/note-requests/*</url-pattern></servlet-mapping>
+    <servlet-mapping><servlet-name>workspace</servlet-name><url-pattern>/teaching-offers/*</url-pattern></servlet-mapping>
+    <servlet>
+        <servlet-name>campusApi</servlet-name>
+        <servlet-class>com.campusconnect.web.CampusApiServlet</servlet-class>
+    </servlet>
+    <servlet-mapping><servlet-name>campusApi</servlet-name><url-pattern>/api/*</url-pattern></servlet-mapping>
+    <welcome-file-list><welcome-file>auth</welcome-file></welcome-file-list>
+</web-app>

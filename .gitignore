@@ -1,0 +1,7 @@
+target/
+runtime/
+mysql-temp/
+*.class
+*.log
+cp.txt
+cookies.txt
