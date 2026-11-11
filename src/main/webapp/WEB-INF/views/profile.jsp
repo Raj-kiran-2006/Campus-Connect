@@ -127,8 +127,8 @@ String initial = displayName.substring(0, 1).toUpperCase(java.util.Locale.ROOT);
                     <form method="post" action="${pageContext.request.contextPath}/profile">
                         <input type="hidden" name="action" value="password">
                         <label>Current password<input class="form-control" type="password" name="currentPassword" required></label>
-                        <label>New password<input class="form-control" type="password" name="newPassword" minlength="8" required></label>
-                        <label>Confirm password<input class="form-control" type="password" name="confirmPassword" minlength="8" required></label>
+                        <label>New password<input class="form-control" type="password" name="newPassword" minlength="12" maxlength="72" autocomplete="new-password" required></label>
+                        <label>Confirm password<input class="form-control" type="password" name="confirmPassword" minlength="12" maxlength="72" autocomplete="new-password" required></label>
                         <button class="btn btn-dark w-100" type="submit">Update password</button>
                     </form>
                 </section>
@@ -137,6 +137,7 @@ String initial = displayName.substring(0, 1).toUpperCase(java.util.Locale.ROOT);
                     <h3>Build trust</h3>
                     <p class="text-secondary">Add your department, interests, and a clear profile photo so peers know who they are working with.</p>
                     <div class="profile-status">● <%= user.getBoolean("verified", false) ? "Verified campus profile" : "Profile not verified" %></div>
+                    <div class="profile-status"><%= user.getBoolean("emailVerified", false) ? "✓ Campus email confirmed" : "Email status not on file" %></div>
                 </section>
             </aside>
         </div>

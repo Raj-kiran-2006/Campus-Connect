@@ -9,11 +9,14 @@ import java.util.List;
 public class DashboardServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Document user = (Document) req.getSession(false).getAttribute("user");
         req.setAttribute("books", latest("products", 6));
         req.setAttribute("notes", latest("notes", 6));
         req.setAttribute("questions", latest("questions", 6));
         req.setAttribute("projects", latest("projects", 6));
         req.setAttribute("events", latest("campus_events", 4));
+        req.setAttribute("savedCount", MySqlStore.collection("saved_items")
+                .countDocuments(SqlFilters.eq("ownerId", user.getObjectId("_id"))));
         req.setAttribute("listingCount", MySqlStore.collection("products").countDocuments());
         req.setAttribute("noteCount", MySqlStore.collection("notes").countDocuments());
         req.setAttribute("questionCount", MySqlStore.collection("questions").countDocuments(SqlFilters.eq("status", "OPEN")));

@@ -38,6 +38,11 @@ public final class MySqlStore {
         return new SqlCollection(table);
     }
 
+    public static long unreadNotificationCount(ObjectId recipientId) {
+        return recipientId == null ? 0 : collection("notifications").countDocuments(
+                SqlFilters.and(SqlFilters.eq("recipientId", recipientId), SqlFilters.eq("read", false)));
+    }
+
     static void normalizeObjectIds(Document document) {
         for (Map.Entry<String, Object> entry : document.entrySet()) {
             Object value = entry.getValue();

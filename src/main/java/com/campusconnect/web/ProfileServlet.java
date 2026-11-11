@@ -20,11 +20,13 @@ public class ProfileServlet extends HttpServlet {
             String current = value(request, "currentPassword");
             String next = value(request, "newPassword");
             String confirm = value(request, "confirmPassword");
-            if (!matches(current, user.getString("password")) || next.length() < 8 || !next.equals(confirm)) {
+            if (!matches(current, user.getString("password")) || next.length() < 12
+                    || next.getBytes(java.nio.charset.StandardCharsets.UTF_8).length > 72
+                    || !next.equals(confirm)) {
                 response.sendRedirect(request.getContextPath() + "/profile?error=password");
                 return;
             }
-            String hash = BCrypt.hashpw(next, BCrypt.gensalt());
+            String hash = BCrypt.hashpw(next, BCrypt.gensalt(12));
             MySqlStore.collection("users").updateOne(SqlFilters.eq("_id", user.getObjectId("_id")),
                     new Document("$set", new Document("password", hash)));
             user.put("password", hash);

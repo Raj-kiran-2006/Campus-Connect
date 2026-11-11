@@ -67,8 +67,17 @@ public class WorkspaceServlet extends HttpServlet {
                 : new Document("createdAt", -1);
         results.sort(sortOrder).limit(100).into(items);
         enrichPeople(items);
+        ArrayList<String> savedTargetIds = new ArrayList<>();
+        MySqlStore.collection("saved_items")
+                .find(SqlFilters.and(
+                        SqlFilters.eq("ownerId", userId(request)),
+                        SqlFilters.eq("targetModule", module)))
+                .map(saved -> saved.getObjectId("targetId"))
+                .into(new ArrayList<ObjectId>())
+                .forEach(id -> savedTargetIds.add(id.toHexString()));
         request.setAttribute("module", module);
         request.setAttribute("items", items);
+        request.setAttribute("savedTargetIds", savedTargetIds);
         request.setAttribute("query", query);
         request.setAttribute("categoryFilter", category);
         request.setAttribute("currentUserId", userId(request));

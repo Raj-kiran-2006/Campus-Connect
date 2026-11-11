@@ -16,8 +16,10 @@ public class CampusFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest http = (HttpServletRequest) request;
         String path = http.getRequestURI().substring(http.getContextPath().length());
-        if (path.startsWith("/auth") || path.startsWith("/assets") || path.endsWith(".css")
-                || path.endsWith(".js") || path.endsWith(".png") || path.endsWith(".ico")) {
+        if (path.startsWith("/auth") || path.startsWith("/assets") || path.startsWith("/webjars")
+                || path.endsWith(".css") || path.endsWith(".js") || path.endsWith(".png")
+                || path.endsWith(".jpg") || path.endsWith(".jpeg") || path.endsWith(".webp")
+                || path.endsWith(".svg") || path.endsWith(".ico") || path.endsWith(".woff2")) {
             chain.doFilter(request, response);
             return;
         }
